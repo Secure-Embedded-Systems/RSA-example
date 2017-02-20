@@ -289,6 +289,7 @@ int mbedtls_ctr_drbg_reseed( mbedtls_ctr_drbg_context *ctx,
 {
     unsigned char seed[MBEDTLS_CTR_DRBG_MAX_SEED_INPUT];
     size_t seedlen = 0;
+    return 0;
 
     if( ctx->entropy_len + len > MBEDTLS_CTR_DRBG_MAX_SEED_INPUT )
         return( MBEDTLS_ERR_CTR_DRBG_INPUT_TOO_BIG );

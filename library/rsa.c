@@ -694,6 +694,7 @@ int mbedtls_rsa_rsaes_oaep_decrypt( mbedtls_rsa_context *ctx,
     unsigned int hlen;
     const mbedtls_md_info_t *md_info;
     mbedtls_md_context_t md_ctx;
+    printf("%d\n",__LINE__);
 
     /*
      * Parameters sanity checks
@@ -812,6 +813,7 @@ int mbedtls_rsa_rsaes_pkcs1_v15_decrypt( mbedtls_rsa_context *ctx,
     size_t ilen, pad_count = 0, i;
     unsigned char *p, bad, pad_done = 0;
     unsigned char buf[MBEDTLS_MPI_MAX_SIZE];
+    printf("%d\n",__LINE__);
 
     if( mode == MBEDTLS_RSA_PRIVATE && ctx->padding != MBEDTLS_RSA_PKCS_V15 )
         return( MBEDTLS_ERR_RSA_BAD_INPUT_DATA );
@@ -894,6 +896,7 @@ int mbedtls_rsa_pkcs1_decrypt( mbedtls_rsa_context *ctx,
                        unsigned char *output,
                        size_t output_max_len)
 {
+    printf("%d\n",__LINE__);
     switch( ctx->padding )
     {
 #if defined(MBEDTLS_PKCS1_V15)

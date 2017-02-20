@@ -100,6 +100,7 @@ const mbedtls_pk_info_t * mbedtls_pk_info_from_type( mbedtls_pk_type_t pk_type )
  */
 int mbedtls_pk_setup( mbedtls_pk_context *ctx, const mbedtls_pk_info_t *info )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || info == NULL || ctx->pk_info != NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 
@@ -123,6 +124,7 @@ int mbedtls_pk_setup_rsa_alt( mbedtls_pk_context *ctx, void * key,
     mbedtls_rsa_alt_context *rsa_alt;
     const mbedtls_pk_info_t *info = &mbedtls_rsa_alt_info;
 
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info != NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 
@@ -178,6 +180,7 @@ int mbedtls_pk_verify( mbedtls_pk_context *ctx, mbedtls_md_type_t md_alg,
                const unsigned char *hash, size_t hash_len,
                const unsigned char *sig, size_t sig_len )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info == NULL ||
         pk_hashlen_helper( md_alg, &hash_len ) != 0 )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
@@ -197,6 +200,7 @@ int mbedtls_pk_verify_ext( mbedtls_pk_type_t type, const void *options,
                    const unsigned char *hash, size_t hash_len,
                    const unsigned char *sig, size_t sig_len )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info == NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 
@@ -209,6 +213,7 @@ int mbedtls_pk_verify_ext( mbedtls_pk_type_t type, const void *options,
         int ret;
         const mbedtls_pk_rsassa_pss_options *pss_opts;
 
+    printf("%d\n",__LINE__);
         if( options == NULL )
             return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 
@@ -236,6 +241,7 @@ int mbedtls_pk_verify_ext( mbedtls_pk_type_t type, const void *options,
     }
 
     /* General case: no options */
+    printf("%d\n",__LINE__);
     if( options != NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 
@@ -250,6 +256,7 @@ int mbedtls_pk_sign( mbedtls_pk_context *ctx, mbedtls_md_type_t md_alg,
              unsigned char *sig, size_t *sig_len,
              int (*f_rng)(void *, unsigned char *, size_t), void *p_rng )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info == NULL ||
         pk_hashlen_helper( md_alg, &hash_len ) != 0 )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
@@ -269,12 +276,15 @@ int mbedtls_pk_decrypt( mbedtls_pk_context *ctx,
                 unsigned char *output, size_t *olen, size_t osize,
                 int (*f_rng)(void *, unsigned char *, size_t), void *p_rng )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info == NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
+    printf("%d\n",__LINE__);
 
     if( ctx->pk_info->decrypt_func == NULL )
         return( MBEDTLS_ERR_PK_TYPE_MISMATCH );
 
+    printf("%d\n",__LINE__);
     return( ctx->pk_info->decrypt_func( ctx->pk_ctx, input, ilen,
                 output, olen, osize, f_rng, p_rng ) );
 }
@@ -287,6 +297,7 @@ int mbedtls_pk_encrypt( mbedtls_pk_context *ctx,
                 unsigned char *output, size_t *olen, size_t osize,
                 int (*f_rng)(void *, unsigned char *, size_t), void *p_rng )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info == NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 
@@ -306,6 +317,7 @@ int mbedtls_pk_check_pair( const mbedtls_pk_context *pub, const mbedtls_pk_conte
         prv == NULL || prv->pk_info == NULL ||
         prv->pk_info->check_pair_func == NULL )
     {
+    printf("%d\n",__LINE__);
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
     }
 
@@ -339,6 +351,7 @@ size_t mbedtls_pk_get_bitlen( const mbedtls_pk_context *ctx )
  */
 int mbedtls_pk_debug( const mbedtls_pk_context *ctx, mbedtls_pk_debug_item *items )
 {
+    printf("%d\n",__LINE__);
     if( ctx == NULL || ctx->pk_info == NULL )
         return( MBEDTLS_ERR_PK_BAD_INPUT_DATA );
 

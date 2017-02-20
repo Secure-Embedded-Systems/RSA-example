@@ -717,6 +717,7 @@ void mbedtls_aes_encrypt( mbedtls_aes_context *ctx,
     int i;
     uint32_t *RK, X0, X1, X2, X3, Y0, Y1, Y2, Y3;
 
+    return;
     RK = ctx->rk;
 
     GET_UINT32_LE( X0, input,  0 ); X0 ^= *RK++;

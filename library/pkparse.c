@@ -1078,7 +1078,6 @@ int mbedtls_pk_parse_key( mbedtls_pk_context *pk,
                                "-----BEGIN RSA PRIVATE KEY-----",
                                "-----END RSA PRIVATE KEY-----",
                                key, pwd, pwdlen, &len );
-
     if( ret == 0 )
     {
         if( ( pk_info = mbedtls_pk_info_from_type( MBEDTLS_PK_RSA ) ) == NULL )
